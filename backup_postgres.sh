@@ -55,10 +55,10 @@ declare -a pids
 declare -a backup_names
 declare -a failed_backups
 
-# Backup databases in parallel using admin_user
+# Backup databases in parallel
 backup_database "my_postgres" "admin_user" "omi_data" & pids+=($!); backup_names+=("my_postgres:omi_data")
-#backup_database "memgpt-letta_db-1" "letta" "letta" & pids+=($!); backup_names+=("memgpt-letta_db-1:letta")
-#backup_database "n8n" "postgres" "n8n" & pids+=($!); backup_names+=("n8n:n8n")  # Updated container name
+backup_database "my_postgres" "admin_user" "gpt_memory" & pids+=($!); backup_names+=("my_postgres:gpt_memory")
+backup_database "my_postgres" "admin_user" "omi_memories" & pids+=($!); backup_names+=("my_postgres:omi_memories")
 
 # Wait for all backups to complete
 failures=0
